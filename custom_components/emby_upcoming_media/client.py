@@ -25,7 +25,7 @@ class EmbyClient:
             url = "http{0}://{1}:{2}/Users/{3}/Views".format(
                 self.ssl, self.host, self.port, self.user_id
             )
-            api = requests.get(url, timeout=10)
+            api = requests.get(url, timeout=10, verify=False)
         except OSError:
             _LOGGER.warning("Host %s is not available", self.host)
             self._state = "%s cannot be reached" % self.host
@@ -52,7 +52,7 @@ class EmbyClient:
                 self.api_key,
             )
             _LOGGER.info("Making API call on URL %s", url)
-            api = requests.get(url, timeout=10)
+            api = requests.get(url, timeout=10, verify=False)
         except OSError:
             _LOGGER.warning("Host %s is not available", self.host)
             self._state = "%s cannot be reached" % self.host
